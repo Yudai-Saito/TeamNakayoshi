@@ -7,7 +7,20 @@
   <body>
    <!-- ここに顧客検索UIが来る予定 -->
    <div class="userscontent">
-    
+    <table>
+        <!-- 画面を先に作っているのでuserモデルがあると仮定して表示する-->
+        <tr th:each="user : ${users}">
+          <td th:text="${user.id}">1<!-- これらはダミー値 -->></td>
+          <td th:text="${user.name}">Hoge</td>
+          <td th:text="${user.phone}">1234</td>
+        </tr>
+        <td>
+            <form th:action="--" method="get">
+                <input type="submit" name="form" value="詳細" />
+                <input type="hidden" name="id" th:value="${user.id}"/>
+            </form>
+        </td>
+      </table>
    </div>
   </body>
 </html>
