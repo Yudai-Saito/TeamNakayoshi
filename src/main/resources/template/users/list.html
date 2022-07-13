@@ -10,19 +10,24 @@
   <body>
    <!-- ここに顧客検索UIが来る予定 -->
    <div class="userscontent">
-    <table>
+    <table class="table table-striped" style="width: 50%; margin: 0 auto !important;">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">名前</th>
+          <th scope="col">電話番号</th>
+          <th scope="col">詳細確認</th>
+        </tr>
+      </thead>
+      <tbody>
         <!-- 画面を先に作っているのでuserモデルがあると仮定して表示する-->
         <tr th:each="user : ${users}">
-          <td th:text="${user.id}">1<!-- これらはダミー値 -->></td>
+          <td th:text="${user.id}">1<!-- これらはダミー値 --></td>
           <td th:text="${user.name}">Hoge</td>
           <td th:text="${user.phone}">1234</td>
+          <td><a class="btn btn-outline-info" href="#">詳細</a></td>
         </tr>
-        <td>
-            <form th:action="--" method="get">
-                <input type="submit" name="form" value="詳細" />
-                <input type="hidden" name="id" th:value="${user.id}"/>
-            </form>
-        </td>
+      </tbody>
       </table>
    </div>
   </body>
