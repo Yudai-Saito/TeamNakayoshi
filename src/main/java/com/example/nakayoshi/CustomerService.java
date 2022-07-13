@@ -15,6 +15,17 @@ public class CustomerService {
   @Autowired
   CustomerRepository customerRepository;
 
+  public List<CustomerForm> findAll() {
+    List<CustomerBean> beanList = customerRepository.findAll();
+    List<CustomerForm> formList = new ArrayList<CustomerForm>();
+    for(CustomerBean customerBean: beanList) {
+      CustomerForm customerForm = new CustomerForm();
+      BeanUtils.copyProperties(customerBean, customerForm);
+      formList.add(customerForm);
+    }
+    return formList;
+    }
+
   public CustomerForm findOne(Integer id) {
     Optional<CustomerBean> customerBean = customerRepository.findById(id);
     CustomerForm customerForm = new CustomerForm();
