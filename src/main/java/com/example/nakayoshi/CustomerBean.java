@@ -8,13 +8,13 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NakayoshiBean {
+public class CustomerBean {
   @Id
   @GeneratedValue
   private Integer id ;
   @Column(nullable = false)
   private String name;
-  private String callnuumber;
-  private String inquiry;
+  private String phone_nmber;
+  private String past_contact;
   private Data data;
 }
