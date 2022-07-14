@@ -34,24 +34,48 @@
           <td th:text="${user.phone}">1234</td>
           <td><a class="btn btn-outline-info" href="#">詳細</a></td>
         </tr>
-        <tr th:each="user : ${users}">
-          <td th:text="${user.id}">1<!-- これらはダミー値 --></td>
-          <td th:text="${user.name}">Hoge</td>
-          <td th:text="${user.phone}">1234</td>
-          <td><a class="btn btn-outline-info" href="#">詳細</a></td>
-        </tr>   <tr th:each="user : ${users}">
-          <td th:text="${user.id}">1<!-- これらはダミー値 --></td>
-          <td th:text="${user.name}">Hoge</td>
-          <td th:text="${user.phone}">1234</td>
-          <td><a class="btn btn-outline-info" href="#">詳細</a></td>
-        </tr>   <tr th:each="user : ${users}">
-          <td th:text="${user.id}">1<!-- これらはダミー値 --></td>
-          <td th:text="${user.name}">Hoge</td>
-          <td th:text="${user.phone}">1234</td>
-          <td><a class="btn btn-outline-info" href="#">詳細</a></td>
-        </tr>
       </tbody>
       </table>
+      <!--1ページあたりの表示件数は10件前後にしたいけど後ろのロジックとすり合わせしないと上手くできなさそう-->
+      <!-- とりあえずロジックがあると想定して仮の遷移ロジックだけ書く 
+      startPage
+      totalPage
+      page
+      あたりはコントローラーに値があると想定して書いてます。
+      明日にロジックとすり合わせる時にうまくこちらで合わせます。
+      -->
+      <!-- ルーティングとかも @RequestMapping 次第-->
+      <nav aria-label="Page navigation example" style="padding-top: 20px; width: 50%; margin: 0 auto !important;">
+        <ul class="pagination">
+          <li th:if="${startPage} > 1" class="page-item ">
+            <a class="page-link" th:href="@{'/users?page=1'}" tabindex="-2">先頭</a>
+          </li>
+          <li th:if="${page} > 1" class="page-item ">
+            <a class="page-link" th:href="@{'/users?page=' + ${page-1}}" tabindex="-1">前へ</a>
+          </li>
+          <th:block th:if="${endPage}<=0">
+            <li class="page-item " th:classappend="${i == page} ? active" th:each="i : ${startPage}">
+                <a class="page-link" th:href="@{'/users?page=' + ${i}}" th:text="${i}"></a>
+            </li>
+          </th:block>
+          <!-- StartPageからEndPageまでのページ数を表示する -->
+          <!--th:block th:if="${endPage}>0">
+            <li class="page-item " th:classappend="${i == page} ? active" th:each="i : ${#numbers.sequence(startPage, endPage)}">
+                <a class="page-link" th:href="@{'/users?page=' + ${i}}" th:text="${i}"></a>
+            </li>
+          </th:block-->
+          <!--　ダミー -->
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li th:if="${page} < ${totalPage}" class="page-item ">
+            <a class="page-link" th:href="@{'/users?page=' + ${page+1}}">次へ</a>
+          </li>
+          <li th:if="${endPage} < ${totalPage}" class="page-item ">
+            <a class="page-link" th:href="@{'/users?page=' + ${totalPage}}">末尾</a>
+          </li>
+        </ul>
+      </nav>
    </div>
   </body>
 </html>
