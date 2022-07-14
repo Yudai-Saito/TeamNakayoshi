@@ -14,7 +14,7 @@ public class CustomerBean {
   private Integer id ;
   @Column(nullable = false)
   private String name;
-  private String phone_nmber;
+  private String phone_number;
   private String past_contact;
   private Data data;
 }
