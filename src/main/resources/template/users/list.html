@@ -8,11 +8,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
   </head>
   <body>
-  <div class="input-group" style="padding-top:  15px; width: 50%; margin: 0 auto !important;">
+  
+  <div class="input-group" style="padding-top:  50px; padding-bottom: 50px; width: 50%; margin: 0 auto !important;">
       <input type="text" class="form-control" placeholder="電話番号を検索" aria-label="Recipient's username with two button addons">
       <button class="btn btn-outline-secondary" type="button">検索</button>
       <button class="btn btn-outline-secondary" type="button">新規</button>
   </div>
+
    <!-- ここに顧客検索UIが来る予定 -->
    <div class="userscontent">
     <table class="table table-striped" style="width: 50%; margin: 0 auto !important;">
@@ -27,6 +29,22 @@
       <tbody>
         <!-- 画面を先に作っているのでuserモデルがあると仮定して表示する-->
         <tr th:each="user : ${users}">
+          <td th:text="${user.id}">1<!-- これらはダミー値 --></td>
+          <td th:text="${user.name}">Hoge</td>
+          <td th:text="${user.phone}">1234</td>
+          <td><a class="btn btn-outline-info" href="#">詳細</a></td>
+        </tr>
+        <tr th:each="user : ${users}">
+          <td th:text="${user.id}">1<!-- これらはダミー値 --></td>
+          <td th:text="${user.name}">Hoge</td>
+          <td th:text="${user.phone}">1234</td>
+          <td><a class="btn btn-outline-info" href="#">詳細</a></td>
+        </tr>   <tr th:each="user : ${users}">
+          <td th:text="${user.id}">1<!-- これらはダミー値 --></td>
+          <td th:text="${user.name}">Hoge</td>
+          <td th:text="${user.phone}">1234</td>
+          <td><a class="btn btn-outline-info" href="#">詳細</a></td>
+        </tr>   <tr th:each="user : ${users}">
           <td th:text="${user.id}">1<!-- これらはダミー値 --></td>
           <td th:text="${user.name}">Hoge</td>
           <td th:text="${user.phone}">1234</td>
