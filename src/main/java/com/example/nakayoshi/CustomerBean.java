@@ -2,6 +2,9 @@ package com.example.nakayoshi;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
 import javax.persistence.*;
 @Entity
 @Table(name = "customers")
@@ -16,5 +19,5 @@ public class CustomerBean {
   private String name;
   private String phone_number;
   private String past_contact;
-  private Data data;
+  private Date date;
 }
