@@ -45,7 +45,7 @@
       tbodyの中の要素に名前をつければページねーとできるかも
       -->
       <!-- ルーティングとかも @RequestMapping 次第-->
-      <nav aria-label="Page navigation example" style="padding-top: 20px; width: 50%; margin: 0 auto !important;">
+      <!--nav aria-label="Page navigation example" style="padding-top: 20px; width: 50%; margin: 0 auto !important;">
         <ul class="pagination">
           <li th:if="${startPage} > 1" class="page-item ">
             <a class="page-link" th:href="@{'/users?page=1'}" tabindex="-2">先頭</a>
@@ -58,13 +58,13 @@
                 <a class="page-link" th:href="@{'/users?page=' + ${i}}" th:text="${i}"></a>
             </li>
           </th:block>
-          <!-- StartPageからEndPageまでのページ数を表示する -->
+          <-- StartPageからEndPageまでのページ数を表示する -->
           <!--th:block th:if="${endPage}>0">
             <li class="page-item " th:classappend="${i == page} ? active" th:each="i : ${#numbers.sequence(startPage, endPage)}">
                 <a class="page-link" th:href="@{'/users?page=' + ${i}}" th:text="${i}"></a>
             </li>
-          </th:block-->
-          <!--　ダミー -->
+          </th:block>
+          
           <li class="page-item"><a class="page-link" href="#">1</a></li>
           <li class="page-item"><a class="page-link" href="#">2</a></li>
           <li class="page-item"><a class="page-link" href="#">3</a></li>
@@ -75,7 +75,7 @@
             <a class="page-link" th:href="@{'/users?page=' + ${totalPage}}">末尾</a>
           </li>
         </ul>
-      </nav>
+      </nav -->
    </div>
   </body>
 </html>
