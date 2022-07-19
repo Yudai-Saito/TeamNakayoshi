@@ -27,11 +27,10 @@
         </tr>
       </thead>
       <tbody>
-        <!-- 画面を先に作っているのでuserモデルがあると仮定して表示する-->
-        <tr th:each="user : ${users}">
-          <td th:text="${user.id}">1<!-- これらはダミー値 --></td>
-          <td th:text="${user.name}">Hoge</td>
-          <td th:text="${user.phone}">1234</td>
+        <tr th:each="customer : ${customers}">
+          <td th:text="${customer.id}">1<!-- これらはダミー値 --></td>
+          <td th:text="${customer.name}">Hoge</td>
+          <td th:text="${customer.phone_number}">1234</td>
           <td><a class="btn btn-outline-info" href="#">詳細</a></td>
         </tr>
       </tbody>
@@ -43,6 +42,7 @@
       page
       あたりはコントローラーに値があると想定して書いてます。
       明日にロジックとすり合わせる時にうまくこちらで合わせます。
+      tbodyの中の要素に名前をつければページねーとできるかも
       -->
       <!-- ルーティングとかも @RequestMapping 次第-->
       <nav aria-label="Page navigation example" style="padding-top: 20px; width: 50%; margin: 0 auto !important;">
