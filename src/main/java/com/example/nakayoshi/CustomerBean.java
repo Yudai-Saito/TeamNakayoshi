@@ -20,6 +20,8 @@ public class CustomerBean {
   private String name;
   private String phone_number;
   private String past_contact;
-  private Date date;
+  private Date created_at;
+  private Date updated_at;
+  private Date deleted_at;
    
 }
