@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("customers")
 public class CustomerController {
+
   @Autowired
   CustomerService customerService;
+   
   @ModelAttribute 
   CustomerForm setUpForm() {
     return new CustomerForm();
   }
+
   @GetMapping
   String list(Model model) {
     model.addAttribute("customers", customerService.findAll());
