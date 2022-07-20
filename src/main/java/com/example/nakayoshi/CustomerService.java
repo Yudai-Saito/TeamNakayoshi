@@ -14,10 +14,21 @@ public class CustomerService {
   CustomerRepository customerRepository;
 
   public CustomerForm create(CustomerForm customerForm) {
+
 	  CustomerBean customerBean = new CustomerBean();
 	  BeanUtils.copyProperties(customerForm, customerBean);
 	  customerRepository.save(customerBean);
 	  return customerForm;
+
+	}
+
+  public CustomerForm update(CustomerForm customerForm) {
+
+	  CustomerBean customerBean = new CustomerBean();
+	  BeanUtils.copyProperties(customerForm, customerBean);
+	  customerRepository.save(customerBean);
+	  return customerForm;
+    
 	}
 
   public List<CustomerForm> findAll() {
