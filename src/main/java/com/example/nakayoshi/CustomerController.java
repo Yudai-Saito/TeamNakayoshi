@@ -41,4 +41,17 @@ public class CustomerController {
     return "customers/detail";
   }
 
+  @PostMapping(path = "edit", params = "form")
+  String editForm(@RequestParam Integer id, CustomerForm form) {
+    CustomerForm customerForm = customerService.findOne(id);
+    BeanUtils.copyProperties(customerForm,  form);
+    return "customers/edit";
+  }
+
+  @PostMapping(path = "edit")
+  String edit(@RequestParam Integer id, CustomerForm form) {
+    customerService.update(form);
+    return "redirect:/customers";
+  }
+
 }
