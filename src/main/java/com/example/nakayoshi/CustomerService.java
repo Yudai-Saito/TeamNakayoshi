@@ -36,4 +36,9 @@ public class CustomerService {
     return customerForm;
 
 	}
+
+  public void delete(Integer id) { 
+    CustomerBean customerBean = new CustomerBean();
+    customerRepository.delete(customerBean);
+  }
 }
