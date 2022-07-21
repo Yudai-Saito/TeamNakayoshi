@@ -22,7 +22,6 @@ public class CertificationFilter extends OncePerRequestFilter {
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
       FilterChain filterChain) throws ServletException, IOException {
 
-    // リクエストヘッダからJWTを取り出す
     String sessionToken = getSessionToken(request);
 
     try {
@@ -31,13 +30,11 @@ public class CertificationFilter extends OncePerRequestFilter {
 
       filterChain.doFilter(request, response);
 
-    // 検証に失敗
     } catch (Exception e) {
        
     }
   }
 
-  // リクエストヘッダからトークンを取得
   private String getSessionToken(HttpServletRequest request) {
     Cookie[] cookies = request.getCookies();
 
