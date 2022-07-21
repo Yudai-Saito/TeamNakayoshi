@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("customers")
@@ -23,6 +25,12 @@ public class CustomerController {
   String list(Model model) {
     model.addAttribute("customers", customerService.findAll());
     return "customers/list";
+  }
+
+  @PostMapping(path = "delete")
+  String delete(@RequestParam Integer id) {
+    customerService.delete(id);
+    return "redirect:/customers";
   }
    
 }
