@@ -1,4 +1,4 @@
-package com.example.nakayoshi;
+package com.example.nakayoshi.Controller;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.example.nakayoshi.Form.CustomerDetailsForm;
+import com.example.nakayoshi.Form.CustomerForm;
+import com.example.nakayoshi.Service.CustomerService;
 
 @Controller
 @RequestMapping("customers")
@@ -25,19 +28,23 @@ public class CustomerController {
   @GetMapping
   String list(Model model) {
     model.addAttribute("customers", customerService.findAll());
+    model.addAttribute("customers", customerService.findAllDetails());
     return "customers/list";
   }
 
   @PostMapping(path="create")
-  String create(CustomerForm form, Model mode) {
+  String create(CustomerForm form, CustomerDetailsForm form2, Model mode) {
     customerService.create(form);
+    customerService.createDetails(form2);
     return "redirect:customers";
   }	
 
   @PostMapping(path = "detail", params = "form")
-  String detailForm(@RequestParam Integer id, CustomerForm form) {
+  String detailForm(@RequestParam Integer id, CustomerForm form, CustomerDetailsForm form2) {
     CustomerForm customerForm = customerService.findOne(id);
     BeanUtils.copyProperties(customerForm,  form);
+    CustomerDetailsForm customerDetailsForm = customerService.findOneDetails(id);
+    BeanUtils.copyProperties(customerDetailsForm,  form2);
     return "customers/detail";
   }
 
