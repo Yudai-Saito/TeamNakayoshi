@@ -13,9 +13,11 @@ class CustomerFormTest {
 /*@Autowired 
   CustomerBean customerBean;*/
   static CustomerForm customerForm = null;
+  static CustomerDetailsForm customerDetailsForm = null;
   @BeforeEach
   void テスト前処理() {
     customerForm = new CustomerForm();
+    customerDetailsForm = new CustomerDetailsForm();
   }
 
   @Test
@@ -37,9 +39,9 @@ class CustomerFormTest {
   }
 
   @Test
-  void past_contact_test() {
-    customerForm.setPast_contact("みんな中吉");
-    assertThat(customerForm.getPast_contact()) .isEqualTo("みんな中吉");
+  void Detail_test() {
+    customerDetailsForm.setDetail("みんな中吉");
+    assertThat(customerDetailsForm.getDetail()) .isEqualTo("みんな中吉");
   }
 
   @Test
