@@ -8,6 +8,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.example.nakayoshi.Form.CustomerDetailsForm;
+import com.example.nakayoshi.Form.CustomerForm;
+
 //@SpringBootTest
 class CustomerFormTest {
 /*@Autowired 
