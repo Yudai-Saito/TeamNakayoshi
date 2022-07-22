@@ -16,7 +16,9 @@ public class CustomerForm {
   @NotNull
   @Size(min = 12, max = 13)
   private String phone_number;
-  private String past_contact;
-  private Date date;
+  @NotNull
+  private Date created_at;
+  private Date updated_at;
+  private Date deleted_at;
 
 }
