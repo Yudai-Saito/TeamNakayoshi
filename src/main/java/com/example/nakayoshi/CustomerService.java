@@ -41,11 +41,4 @@ public class CustomerService {
     return customerForm;
 
 	}
-   // ページ取得メソッド
-   public Paged<CustomerBean> getPage(int pageNumber, int size) {
- 
-    PageRequest request = PageRequest.of(pageNumber - 1, size);
-    Page<CustomerBean> postPage = customerRepository.findAll(request);
-    return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), pageNumber, size));
-}
 }

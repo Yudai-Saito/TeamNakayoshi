@@ -21,10 +21,8 @@ public class CustomerController {
   }
 
   @GetMapping
-  String list(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
-  @RequestParam(value = "size", required = false, defaultValue = "5") int size, Model model){
+  String list(Model model) {
     model.addAttribute("customers", customerService.findAll());
-    model.addAttribute("customers", customerService.getPage(pageNumber, size));
     return "customers/list";
   }
 }
