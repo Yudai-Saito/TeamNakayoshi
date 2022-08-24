@@ -11,6 +11,7 @@ public class FindforPagenateService {
     @PersistenceContext
     private EntityManager em;
 
+    // これと同じことをMySQL環境でやりたい
     public int findAllCnt() {
         return ((Number) em.createQuery("select count(*) from Board")
                     .getSingleResult()).intValue();
