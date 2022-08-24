@@ -1,4 +1,4 @@
-package com.example.nakayoshi;
+package com.example.nakayoshi.Application;
 
 import java.io.FileInputStream;
 import java.io.IOException;
