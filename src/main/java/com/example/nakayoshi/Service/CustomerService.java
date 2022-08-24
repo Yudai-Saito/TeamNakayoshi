@@ -7,8 +7,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.nakayoshi.Bean.CustomerBean;
-import com.example.nakayoshi.Bean.CustomerDetailsBean;
-import com.example.nakayoshi.Form.CustomerDetailsForm;
 import com.example.nakayoshi.Form.CustomerForm;
 import com.example.nakayoshi.Repository.CustomerDetailsRepository;
 import com.example.nakayoshi.Repository.CustomerRepository;
@@ -29,30 +27,12 @@ public class CustomerService {
 
   }
 
-  public CustomerDetailsForm createDetails(CustomerDetailsForm customerDetailsForm) {
-
-    CustomerDetailsBean customerDetailsBean = new CustomerDetailsBean();
-    BeanUtils.copyProperties(customerDetailsForm, customerDetailsBean);
-    customerDetailsRepository.save(customerDetailsBean);
-    return customerDetailsForm;
-
-  }
-
   public CustomerForm update(CustomerForm customerForm) {
 
     CustomerBean customerBean = new CustomerBean();
     BeanUtils.copyProperties(customerForm, customerBean);
     customerRepository.save(customerBean);
     return customerForm;
-    
-  }
-
-  public CustomerDetailsForm updateDetails(CustomerDetailsForm customerDetailsForm) {
-
-    CustomerDetailsBean customerDetailsBean = new CustomerDetailsBean();
-    BeanUtils.copyProperties(customerDetailsForm, customerDetailsBean);
-    customerDetailsRepository.save(customerDetailsBean);
-    return customerDetailsForm;
     
   }
 
@@ -71,21 +51,6 @@ public class CustomerService {
 
   }
 
-  public List<CustomerDetailsForm> findAllDetails() {
-
-    List<CustomerDetailsBean> detailsbeanList = customerDetailsRepository.findAll();
-    List<CustomerDetailsForm> detailsformList = new ArrayList<CustomerDetailsForm>();
-
-    for(CustomerDetailsBean customerDetailsBean: detailsbeanList) {
-        CustomerDetailsForm customerDetailsForm = new CustomerDetailsForm();
-        BeanUtils.copyProperties(customerDetailsBean, customerDetailsForm);
-        detailsformList.add(customerDetailsForm);
-    }
-
-    return detailsformList;
-
-  }
-
   public CustomerForm findOne(Integer id) {
 
     Optional<CustomerBean> customerBean = customerRepository.findById(id);
@@ -95,12 +60,4 @@ public class CustomerService {
 
   }
 
-  public CustomerDetailsForm findOneDetails(Integer id) {
-
-    Optional<CustomerDetailsBean> customerDetailsBean = customerDetailsRepository.findById(id);
-    CustomerDetailsForm customerDetailsForm = new CustomerDetailsForm();
-    BeanUtils.copyProperties(customerDetailsBean, customerDetailsForm);
-    return customerDetailsForm;
-
-  }
 }
