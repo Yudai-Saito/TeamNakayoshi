@@ -58,8 +58,6 @@
 			<scope>test</scope>
 		</dependency>
 
-	</dependencies>
-
 		<dependency>
 			<groupId>com.google.firebase</groupId>
 			<artifactId>firebase-admin</artifactId>
