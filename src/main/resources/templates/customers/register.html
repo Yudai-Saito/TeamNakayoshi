@@ -16,22 +16,22 @@
 </head>
 
 <body>
-    <div class="input-group" style="padding-top:  50px; padding-bottom: 10px; max-width: 50%; margin: 0 auto !important;">
-        <h3><label for="name">名前&emsp;</label></h3>
-        <input type="text" class="form-control" aria-label="Recipient's username with two button addons">
-    </div>
-    <div class="input-group" style="padding-top:  25px; padding-bottom: 10px; max-width: 50%; margin: 0 auto !important;">
-        <h3><label for="address">番号&emsp;</label></h3>
-        <input type="text" class="form-control" aria-label="Recipient's username with two button addons">
-    </div>
-    <div class="input-group" style="padding-top:  25px; padding-bottom: 50px; max-width: 50%; margin: 0 auto !important;">
-        <h3><label for="contents">内容&emsp;</label></h3>
-        <textarea id="contents" class="form-control" style="height: 150px;"
-            aria-label="Recipient's username with two button addons" ></textarea>
-
-    </div>
-    <div class="button-group" style="padding-top:  25px; padding-bottom: 50px; max-width: 50%; margin: 0 auto !important;">
-        <div button class="btn btn-outline-secondary" onclick="location.href='./list.html'"style="margin-left: 175px;">戻る</button></div>
-        <div button class="btn btn-outline-secondary" style="margin-left: 200px;" type="button">登録</button></div>
-    </div>
+    <form enctype="multipart/form-data" th:action="@{/create}" method="post">
+        <div class="input-group" style="padding-top:  50px; padding-bottom: 10px; max-width: 50%; margin: 0 auto !important;">
+            <h3><label for="name">名前&emsp;</label></h3>
+            <input type="text" class="form-control" th:field="${customers.name}">
+        </div>
+        <div class="input-group" style="padding-top:  25px; padding-bottom: 10px; max-width: 50%; margin: 0 auto !important;">
+            <h3><label for="address">番号&emsp;</label></h3>
+            <input type="text" class="form-control" th:field="${customers.phone_number}">
+        </div>
+        <div class="input-group" style="padding-top:  25px; padding-bottom: 50px; max-width: 50%; margin: 0 auto !important;">
+            <h3><label for="contents">内容&emsp;</label></h3>
+            <textarea id="contents" class="form-control" style="height: 150px;" th:field="${details.detail}"></textarea>
+        </div>
+        <div class="button-group" style="padding-top:  25px; padding-bottom: 50px; max-width: 50%; margin: 0 auto !important;">
+            <div button class="btn btn-outline-secondary" onclick="location.href='./list.html'" style="margin-left: 175px;" type="Button">戻る</button></div>
+            <div button class="btn btn-outline-secondary" style="margin-left: 200px;" type="submit">登録</button></div>
+        </div>
+    </form>
 </body>

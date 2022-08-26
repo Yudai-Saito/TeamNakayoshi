@@ -38,7 +38,8 @@ public class CustomerController {
   }
 
   @PostMapping(path="create")
-  String create(CustomerForm form, CustomerDetailsForm form2, Model mode) {
+  String create(@ModelAttribute("customers") CustomerForm form, 
+  @ModelAttribute("details") CustomerDetailsForm form2, Model mode) {
     customerService.create(form);
     customerDetailsService.createDetails(form2);
     custForm.setCreated_at(new Date());
