@@ -1,4 +1,4 @@
-package com.example.nakayoshi;
+package com.example.nakayoshi.Filter;
 
 import java.io.IOException;
 

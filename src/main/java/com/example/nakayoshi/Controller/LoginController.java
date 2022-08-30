@@ -1,4 +1,4 @@
-package com.example.nakayoshi;
+package com.example.nakayoshi.Controller;
 
 import java.util.concurrent.TimeUnit;
 
