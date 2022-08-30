@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CustomerDetailsForm {
 
-  private Integer id ;
+  private Integer id;
   @NotNull
   private Integer user_id;
   @NotNull
