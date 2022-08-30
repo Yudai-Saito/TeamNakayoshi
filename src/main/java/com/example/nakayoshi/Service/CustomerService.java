@@ -1,6 +1,7 @@
 package com.example.nakayoshi.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.BeanUtils;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.nakayoshi.Bean.CustomerBean;
 import com.example.nakayoshi.Form.CustomerForm;
-import com.example.nakayoshi.Repository.CustomerDetailsRepository;
 import com.example.nakayoshi.Repository.CustomerRepository;
 
 @Service
@@ -16,15 +16,18 @@ public class CustomerService {
 
   @Autowired
   CustomerRepository customerRepository;
-  CustomerDetailsRepository customerDetailsRepository;
 
-  public CustomerForm create(CustomerForm customerForm) {
+  public CustomerForm createCustomer(CustomerForm customerForm) {
 
     CustomerBean customerBean = new CustomerBean();
+    
+    Date now = new Date();
+    customerForm.setCreated_at(now);
+
     BeanUtils.copyProperties(customerForm, customerBean);
     customerRepository.save(customerBean);
+    
     return customerForm;
-
   }
 
   public CustomerForm update(CustomerForm customerForm) {
@@ -32,8 +35,8 @@ public class CustomerService {
     CustomerBean customerBean = new CustomerBean();
     BeanUtils.copyProperties(customerForm, customerBean);
     customerRepository.save(customerBean);
+
     return customerForm;
-    
   }
 
   public List<CustomerForm> findAll() {
@@ -48,7 +51,6 @@ public class CustomerService {
     }
 
     return formList;
-
   }
 
   public CustomerForm findOne(Integer id) {
@@ -56,8 +58,7 @@ public class CustomerService {
     Optional<CustomerBean> customerBean = customerRepository.findById(id);
     CustomerForm customerForm = new CustomerForm();
     BeanUtils.copyProperties(customerBean, customerForm);
+
     return customerForm;
-
   }
-
 }
