@@ -60,17 +60,25 @@ public class CustomerController {
     return "customers/details";
   }
 
+  @GetMapping("/form/{user_id}")
+  public String postScript(@PathVariable int user_id, Model model) {
+    model.addAttribute("customer", customerService.findOne(user_id));
+    
+    return "forms/postscript";
+  }
+
   @PostMapping(path = "edit", params = "form")
   String editForm(@RequestParam Integer id, CustomerForm form) {
     CustomerForm customerForm = customerService.findOne(id);
     BeanUtils.copyProperties(customerForm,  form);
+    
     return "customers/edit";
   }
 
   @PostMapping(path = "edit")
   String edit(@RequestParam Integer id, CustomerForm form) {
     customerService.update(form);
+    
     return "redirect:/customers";
   }
-
 }
