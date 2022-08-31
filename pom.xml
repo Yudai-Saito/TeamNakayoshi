@@ -58,8 +58,6 @@
 			<scope>test</scope>
 		</dependency>
 
-	</dependencies>
-
 		<dependency>
 			<groupId>com.google.firebase</groupId>
 			<artifactId>firebase-admin</artifactId>
@@ -70,6 +68,12 @@
 			<groupId>javax.ws.rs</groupId>
 			<artifactId>javax.ws.rs-api</artifactId>
 			<version>2.1.1</version>
+		</dependency>
+
+		<dependency>
+    		<groupId>mysql</groupId>
+    		<artifactId>mysql-connector-java</artifactId>
+    		<version>8.0.29</version>
 		</dependency>
 	</dependencies>
 	<build>

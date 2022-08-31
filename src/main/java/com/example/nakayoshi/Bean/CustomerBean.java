@@ -15,7 +15,7 @@ public class CustomerBean {
 
   @Id
   @GeneratedValue
-  private Integer id ;
+  private Integer id;
   @Column(nullable = false)
   private String name;
   private String phone_number;

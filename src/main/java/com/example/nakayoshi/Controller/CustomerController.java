@@ -1,6 +1,5 @@
 package com.example.nakayoshi.Controller;
 
-import java.util.Date;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +18,9 @@ import com.example.nakayoshi.Service.CustomerDetailsService;
 @RequestMapping("customers")
 public class CustomerController {
 
-  CustomerForm custForm = new CustomerForm();
-  CustomerDetailsForm custDetailsForm = new CustomerDetailsForm();
-
   @Autowired
   CustomerService customerService;
+  @Autowired
   CustomerDetailsService customerDetailsService;
 
   @ModelAttribute 
@@ -33,17 +30,25 @@ public class CustomerController {
 
   @GetMapping
   String list(Model model) {
+    //ページングを実装する場合はAllではなくLimit的なのをかける
     model.addAttribute("customers", customerService.findAll());
     return "customers/list";
   }
 
-  @PostMapping(path="create")
-  String create(CustomerForm form, CustomerDetailsForm form2, Model mode) {
-    customerService.create(form);
-    customerDetailsService.createDetails(form2);
-    custForm.setCreated_at(new Date());
-    custDetailsForm.setCreated_at(new Date());
-    return "redirect:customers";
+  @GetMapping("regist")
+  String regist(@ModelAttribute("customer") CustomerForm userInfo, 
+    @ModelAttribute("detail") CustomerDetailsForm userDetail, Model model){
+
+    return "customers/register";
+  }
+
+  @PostMapping(path = "create")
+  String create(@ModelAttribute("customer") CustomerForm userInfo, 
+    @ModelAttribute("detail") CustomerDetailsForm userDetail, Model model) {;
+    customerService.createCustomer(userInfo);
+    customerDetailsService.createDetail(userInfo, userDetail);
+
+    return "redirect:/customers";
   }	
 
   @PostMapping(path = "detail", params = "form")
@@ -65,7 +70,6 @@ public class CustomerController {
   @PostMapping(path = "edit")
   String edit(@RequestParam Integer id, CustomerForm form) {
     customerService.update(form);
-    custForm.setUpdated_at(new Date());
     return "redirect:/customers";
   }
 
