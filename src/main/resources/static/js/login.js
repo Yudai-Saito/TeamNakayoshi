@@ -25,7 +25,7 @@ class Index {
                   Authorization: `Bearer ${idToken}`,
                 }
               }).then(res => {
-                  window.location.href = '/main' 
+                  window.location.href = '/customers' 
                 }
               ).catch(res => {
                   window.location.href = '/error' 
