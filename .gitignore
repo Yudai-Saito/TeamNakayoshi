@@ -33,5 +33,5 @@ build/
 .vscode/
 
 ## env ##
-config/
+/src/config/serviceAccountKey.json
 src/main/resources/application.properties
