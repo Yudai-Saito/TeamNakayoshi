@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +22,7 @@ public class CustomerController {
   @Autowired
   CustomerService customerService;
   @Autowired
-  CustomerDetailsService customerDetailsService;
+  CustomerDetailsService customerDetailService;
 
   @ModelAttribute 
   CustomerForm setUpForm() {
@@ -46,18 +47,17 @@ public class CustomerController {
   String create(@ModelAttribute("customer") CustomerForm userInfo, 
     @ModelAttribute("detail") CustomerDetailsForm userDetail, Model model) {;
     customerService.createCustomer(userInfo);
-    customerDetailsService.createDetail(userInfo, userDetail);
+    customerDetailService.createDetail(userInfo, userDetail);
 
     return "redirect:/customers";
   }	
 
-  @PostMapping(path = "detail", params = "form")
-  String detailForm(@RequestParam Integer id, CustomerForm form, CustomerDetailsForm form2) {
-    CustomerForm customerForm = customerService.findOne(id);
-    BeanUtils.copyProperties(customerForm,  form);
-    CustomerDetailsForm customerDetailsForm = customerDetailsService.findOneDetails(id);
-    BeanUtils.copyProperties(customerDetailsForm,  form2);
-    return "customers/detail";
+  @GetMapping("{user_id}")
+  String detailForm(@PathVariable Integer user_id, CustomerForm userInfo, CustomerDetailsForm userDetail, Model model) {
+    model.addAttribute("customer", customerService.findOne(user_id));
+    model.addAttribute("detail", customerDetailService.findUserDetails(user_id));
+
+    return "customers/details";
   }
 
   @PostMapping(path = "edit", params = "form")
