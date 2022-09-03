@@ -11,14 +11,18 @@ import lombok.NoArgsConstructor;
 public class CustomerForm {
 
   private Integer id ;
+
   @NotNull
   private String name;
+
   @NotNull
   @Size(min = 12, max = 13)
-  private String phone_number;
+  private String phoneNumber;
+
   @NotNull
-  private Date created_at;
-  private Date updated_at;
-  private Date deleted_at;
+  private Date createdAt;
+
+  private Date updatedAt;
+  private Date deletedAt;
 
 }

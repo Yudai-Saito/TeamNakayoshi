@@ -31,14 +31,14 @@ class CustomerFormTest {
 
   @Test
   void phone_number_test() {
-    customerForm.setPhone_number("090-7071-7201");
-    assertThat(customerForm.getPhone_number()) .isEqualTo("090-7071-7201");
+    customerForm.setPhoneNumber("090-7071-7201");
+    assertThat(customerForm.getPhoneNumber()) .isEqualTo("090-7071-7201");
   }
 
   @Test
   void phone_number_size_test() {
-    customerForm.setPhone_number("090-7070-1324");
-    assertThat(customerForm.getPhone_number().length()) .isBetween(12, 13);
+    customerForm.setPhoneNumber("090-7070-1324");
+    assertThat(customerForm.getPhoneNumber().length()) .isBetween(12, 13);
   }
 
   @Test

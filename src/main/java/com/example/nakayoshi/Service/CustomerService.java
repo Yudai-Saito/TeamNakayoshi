@@ -22,7 +22,7 @@ public class CustomerService {
     CustomerBean customerBean = new CustomerBean();
     
     Date now = new Date();
-    customerForm.setCreated_at(now);
+    customerForm.setCreatedAt(now);
 
     BeanUtils.copyProperties(customerForm, customerBean);
     customerRepository.save(customerBean);
@@ -57,7 +57,7 @@ public class CustomerService {
 
     Optional<CustomerBean> customerBean = customerRepository.findById(id);
     CustomerForm customerForm = new CustomerForm();
-    BeanUtils.copyProperties(customerBean, customerForm);
+    BeanUtils.copyProperties(customerBean.get(), customerForm);
 
     return customerForm;
   }

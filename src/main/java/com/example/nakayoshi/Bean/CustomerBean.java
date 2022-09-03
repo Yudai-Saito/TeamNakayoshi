@@ -16,11 +16,20 @@ public class CustomerBean {
   @Id
   @GeneratedValue
   private Integer id;
+
   @Column(nullable = false)
   private String name;
-  private String phone_number;
-  private Date created_at;
-  private Date updated_at;
-  private Date deleted_at;
+
+  @Column(name = "phone_number", nullable = false)
+  private String phoneNumber;
+
+  @Column(name = "created_at")
+  private Date createdAt;
+
+  @Column(name = "updated_at")
+  private Date updatedAt;
+
+  @Column(name = "deleted_at")
+  private Date deletedAt;
    
 }

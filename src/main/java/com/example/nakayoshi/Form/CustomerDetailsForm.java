@@ -10,12 +10,16 @@ import lombok.NoArgsConstructor;
 public class CustomerDetailsForm {
 
   private Integer id;
+
   @NotNull
-  private Integer user_id;
+  private Integer userId;
+  
   @NotNull
   private String detail;
+
   @NotNull
-  private Date created_at;
-  private Date deleted_at;
+  private Date createdAt;
+  
+  private Date deletedAt;
 
 }

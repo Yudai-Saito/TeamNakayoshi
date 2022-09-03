@@ -1,8 +1,8 @@
 package com.example.nakayoshi.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,25 +21,24 @@ public class CustomerDetailsService {
   @Autowired
   JdbcTemplate jdbcTemplate;
 
-
   public CustomerDetailsForm createDetail(CustomerForm customerForm, CustomerDetailsForm customerDetailsForm) {
 
     CustomerDetailsBean customerDetailsBean = new CustomerDetailsBean();
 
     Date now = new Date();
-    customerDetailsForm.setCreated_at(now);
+    customerDetailsForm.setCreatedAt(now);
 
     String sql = "select * from customers where phone_number = ?";
 
-    Map<String, Object> user = jdbcTemplate.queryForMap(sql, customerForm.getPhone_number());
-    customerDetailsForm.setUser_id((Integer)user.get("id"));
+    Map<String, Object> user = jdbcTemplate.queryForMap(sql, customerForm.getPhoneNumber());
+    customerDetailsForm.setUserId((Integer)user.get("id"));
 
     BeanUtils.copyProperties(customerDetailsForm, customerDetailsBean);
     customerDetailsRepository.save(customerDetailsBean);
 
     return customerDetailsForm;
   }
-
+      
   public CustomerDetailsForm updateDetails(CustomerDetailsForm customerDetailsForm) {
 
     CustomerDetailsBean customerDetailsBean = new CustomerDetailsBean();
@@ -49,12 +48,17 @@ public class CustomerDetailsService {
     return customerDetailsForm;
   }
 
-  public CustomerDetailsForm findOneDetails(Integer id) {
+  public String findUserDetails(Integer user_id) {
 
-    Optional<CustomerDetailsBean> customerDetailsBean = customerDetailsRepository.findById(id);
-    CustomerDetailsForm customerDetailsForm = new CustomerDetailsForm();
-    BeanUtils.copyProperties(customerDetailsBean, customerDetailsForm);
+    String customerDetail = "";
 
-    return customerDetailsForm;
+    List<CustomerDetailsBean> customerDetailsBean = customerDetailsRepository.findByUserIdOrderByCreatedAtDesc(user_id);
+
+    for(CustomerDetailsBean userBean : customerDetailsBean) {
+        customerDetail = customerDetail + userBean.getCreatedAt().toString() + "\n"; 
+        customerDetail = customerDetail + userBean.getDetail().toString() + "\n\n"; 
+    }
+
+    return customerDetail;
   }
 }

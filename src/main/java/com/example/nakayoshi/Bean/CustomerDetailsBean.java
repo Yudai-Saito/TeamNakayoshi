@@ -16,12 +16,17 @@ public class CustomerDetailsBean {
   @Id
   @GeneratedValue
   private Integer id;
-  @Column(nullable = false)
-  private Integer user_id;
+
+  @Column(name="user_id", nullable = false)
+  private Integer userId;
+
   @Column(nullable = false)
   private String detail;
-  @Column(nullable = false)
-  private Date created_at;
-  private Date deleted_at;
+
+  @Column(name="created_at")
+  private Date createdAt;
+
+  @Column(name="deleted_at")
+  private Date deletedAt;
    
 }
