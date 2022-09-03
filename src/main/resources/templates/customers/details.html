@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>顧客詳細</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="detailcontent" style="text-align: center;">
+        <div class="name-and-phone" style="padding-top: 50px; padding-bottom: 50px;">
+          <h3 th:text="'名前:' + ${customer.name}">名前: HogeHoge</h3>
+          <h3 th:text="'電話番号:' + ${customer.phoneNumber}">電話番号: 999-9999-9999</h3>
+        <div class="contact">
+          <h3>お問い合わせ内容</h3>
+            <textarea id="contents" class="form-control" rows="20" readonly>[[${detail}]]</textarea> 
+            <a class="btn btn-outline-secondary" href="/customers" type="Button">戻る</a>
+            <a class="btn btn-outline-secondary" th:href="'/customers/delete/' + ${customer.id}" type="Button">削除</a>
+            <a class="btn btn-outline-secondary" th:href="'/customers/edit/' + ${customer.id}" type="Button">編集</a>
+            <a class="btn btn-outline-secondary" th:href="'/customers/form/' + ${customer.id}" type="Button">追記</a>
+        </div>
+    </div>
+  </body>
+</html>
