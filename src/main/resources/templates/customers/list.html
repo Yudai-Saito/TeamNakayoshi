@@ -30,8 +30,8 @@
         <tr th:each="customer : ${customers}">
           <td th:text="${customer.id}">1<!-- これらはダミー値 --></td>
           <td th:text="${customer.name}">Hoge</td>
-          <td th:text="${customer.phone_number}">1234</td>
-          <td><a class="btn btn-outline-info" href="#">詳細</a></td>
+          <td th:text="${customer.phoneNumber}">1234</td>
+          <td><a class="btn btn-outline-info" th:href="'/customers/' + ${customer.id}">詳細</a></td>
         </tr>
       </tbody>
       </table>
