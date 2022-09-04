@@ -39,13 +39,20 @@ public class CustomerDetailsService {
     return customerDetailsForm;
   }
       
-  public CustomerDetailsForm updateDetails(CustomerDetailsForm customerDetailsForm) {
+  public void addDetails(Integer user_id, String detail) {
 
     CustomerDetailsBean customerDetailsBean = new CustomerDetailsBean();
-    BeanUtils.copyProperties(customerDetailsForm, customerDetailsBean);
+
+    customerDetailsBean.setUserId(user_id);
+
+    customerDetailsBean.setDetail(detail);
+
+    Date now = new Date();
+    customerDetailsBean.setCreatedAt(now);
+
     customerDetailsRepository.save(customerDetailsBean);
 
-    return customerDetailsForm;
+    return;
   }
 
   public String findUserDetails(Integer user_id) {
