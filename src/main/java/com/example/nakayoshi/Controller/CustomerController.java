@@ -63,9 +63,18 @@ public class CustomerController {
   @GetMapping("/form/{user_id}")
   public String postScript(@PathVariable int user_id, Model model) {
     model.addAttribute("customer", customerService.findOne(user_id));
-    
+    model.addAttribute("detail", customerDetailService.findUserDetails(user_id));
+
     return "forms/postscript";
   }
+
+  @PostMapping(path = "add", params = "user_id")
+  String addDetails(@RequestParam Integer user_id, @RequestParam String detail, Model model){
+    customerDetailService.addDetails(user_id, detail);
+
+    return "redirect:/customers/" + user_id;
+  }
+
 
   @PostMapping(path = "edit", params = "form")
   String editForm(@RequestParam Integer id, CustomerForm form) {
