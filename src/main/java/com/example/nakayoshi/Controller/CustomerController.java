@@ -75,6 +75,13 @@ public class CustomerController {
     return "redirect:/customers/" + user_id;
   }
 
+  @PostMapping(path = "/delete")
+  String customerDelete(@RequestParam Integer userId){
+    customerDetailService.deleteDetails(userId);
+    customerService.delete(userId);
+
+    return "redirect:/customers";
+  }
 
   @PostMapping(path = "edit", params = "form")
   String editForm(@RequestParam Integer id, CustomerForm form) {
