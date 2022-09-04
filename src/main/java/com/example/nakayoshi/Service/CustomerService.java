@@ -39,6 +39,11 @@ public class CustomerService {
     return customerForm;
   }
 
+  public void delete(Integer userId) { 
+    customerRepository.deleteById(userId);
+  }
+
+
   public List<CustomerForm> findAll() {
 
     List<CustomerBean> beanList = customerRepository.findAll();

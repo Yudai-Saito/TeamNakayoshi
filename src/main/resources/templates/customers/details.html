@@ -12,13 +12,19 @@
         <div class="name-and-phone" style="padding-top: 50px; padding-bottom: 50px;">
           <h3 th:text="'名前:' + ${customer.name}">名前: HogeHoge</h3>
           <h3 th:text="'電話番号:' + ${customer.phoneNumber}">電話番号: 999-9999-9999</h3>
+        </div>
         <div class="contact">
-          <h3>お問い合わせ内容</h3>
+            <h3>お問い合わせ内容</h3>
             <textarea id="contents" class="form-control" rows="20" readonly>[[${detail}]]</textarea> 
-            <a class="btn btn-outline-secondary" href="/customers" type="Button">戻る</a>
-            <a class="btn btn-outline-secondary" th:href="'/customers/delete/' + ${customer.id}" type="Button">削除</a>
-            <a class="btn btn-outline-secondary" th:href="'/customers/edit/' + ${customer.id}" type="Button">編集</a>
-            <a class="btn btn-outline-secondary" th:href="'/customers/form/' + ${customer.id}" type="Button">追記</a>
+            <div align="center">
+                <form method="post" action="/customers/delete">
+                    <a class="btn btn-outline-secondary" href="/customers" type="Button">戻る</a>
+                    <input type="hidden" name="userId" th:value="${customer.id}">
+                    <input class="btn btn-outline-secondary" type="submit" value="削除">
+                    <a class="btn btn-outline-secondary" th:href="'/customers/edit/' + ${customer.id}" type="Button">編集</a>
+                    <a class="btn btn-outline-secondary" th:href="'/customers/form/' + ${customer.id}" type="Button">追記</a>
+                </form>
+            </div>
         </div>
     </div>
   </body>

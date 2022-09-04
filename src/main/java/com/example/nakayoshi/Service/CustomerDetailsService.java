@@ -55,6 +55,10 @@ public class CustomerDetailsService {
     return;
   }
 
+  public void deleteDetails(Integer userId){
+    customerDetailsRepository.deleteByUserId(userId);
+  }
+
   public String findUserDetails(Integer user_id) {
 
     String customerDetail = "";
