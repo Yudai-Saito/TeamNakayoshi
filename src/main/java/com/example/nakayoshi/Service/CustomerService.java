@@ -43,6 +43,16 @@ public class CustomerService {
     customerRepository.deleteById(userId);
   }
 
+  public void updateCustomer(Integer userId, String userName, String phoneNumber){
+    Date now = new Date();
+
+    Optional<CustomerBean> userBean = customerRepository.findById(userId);
+    userBean.get().setName(userName);
+    userBean.get().setPhoneNumber(phoneNumber);;
+    userBean.get().setUpdatedAt(now);
+  
+    customerRepository.save(userBean.get());
+  }
 
   public List<CustomerForm> findAll() {
 
