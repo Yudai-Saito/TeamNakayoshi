@@ -1,6 +1,5 @@
 package com.example.nakayoshi.Controller;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,18 +82,17 @@ public class CustomerController {
     return "redirect:/customers";
   }
 
-  @PostMapping(path = "edit", params = "form")
-  String editForm(@RequestParam Integer id, CustomerForm form) {
-    CustomerForm customerForm = customerService.findOne(id);
-    BeanUtils.copyProperties(customerForm,  form);
-    
+  @GetMapping("/edit/{userId}")
+  String editForm(@PathVariable Integer userId, Model model) {
+    model.addAttribute("customer", customerService.findOne(userId));
+
     return "customers/edit";
   }
 
-  @PostMapping(path = "edit")
-  String edit(@RequestParam Integer id, CustomerForm form) {
-    customerService.update(form);
-    
-    return "redirect:/customers";
+  @PostMapping(path = "/edit")
+  String edit(@RequestParam Integer userId, @RequestParam String userName, @RequestParam String phoneNumber) {
+    customerService.updateCustomer(userId, userName, phoneNumber);
+
+    return "redirect:/customers/" + userId;
   }
 }
