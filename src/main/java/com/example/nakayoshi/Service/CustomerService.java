@@ -76,4 +76,15 @@ public class CustomerService {
 
     return customerForm;
   }
+
+  public CustomerForm findOne(String phoneNumber) {
+
+    Optional<CustomerBean> customerBean = customerRepository.findByPhoneNumberLike(phoneNumber);
+    
+    CustomerForm customerForm = new CustomerForm();
+
+    BeanUtils.copyProperties(customerBean.get(), customerForm);
+
+    return customerForm;
+  }
 }

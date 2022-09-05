@@ -95,4 +95,11 @@ public class CustomerController {
 
     return "redirect:/customers/" + userId;
   }
+
+  @GetMapping("/search")
+  String customerSearch(@RequestParam String phoneNumber, Model model){
+
+    model.addAttribute("customers", customerService.findOne(phoneNumber));
+    return "customers/list";
+  }
 }
