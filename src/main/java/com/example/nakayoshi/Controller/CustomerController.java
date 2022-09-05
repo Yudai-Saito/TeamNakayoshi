@@ -51,27 +51,27 @@ public class CustomerController {
     return "redirect:/customers";
   }	
 
-  @GetMapping("{user_id}")
-  String detailForm(@PathVariable Integer user_id, CustomerForm userInfo, CustomerDetailsForm userDetail, Model model) {
-    model.addAttribute("customer", customerService.findOne(user_id));
-    model.addAttribute("detail", customerDetailService.findUserDetails(user_id));
+  @GetMapping("{userId}")
+  String detailForm(@PathVariable Integer userId, CustomerForm userInfo, CustomerDetailsForm userDetail, Model model) {
+    model.addAttribute("customer", customerService.findOne(userId));
+    model.addAttribute("detail", customerDetailService.findUserDetails(userId));
 
     return "customers/details";
   }
 
-  @GetMapping("/form/{user_id}")
-  public String postScript(@PathVariable int user_id, Model model) {
-    model.addAttribute("customer", customerService.findOne(user_id));
-    model.addAttribute("detail", customerDetailService.findUserDetails(user_id));
+  @GetMapping("/form/{userId}")
+  public String postScript(@PathVariable int userId, Model model) {
+    model.addAttribute("customer", customerService.findOne(userId));
+    model.addAttribute("detail", customerDetailService.findUserDetails(userId));
 
     return "forms/postscript";
   }
 
-  @PostMapping(path = "add", params = "user_id")
-  String addDetails(@RequestParam Integer user_id, @RequestParam String detail, Model model){
-    customerDetailService.addDetails(user_id, detail);
+  @PostMapping(path = "add", params = "userId")
+  String addDetails(@RequestParam Integer userId, @RequestParam String detail, Model model){
+    customerDetailService.addDetails(userId, detail);
 
-    return "redirect:/customers/" + user_id;
+    return "redirect:/customers/" + userId;
   }
 
   @PostMapping(path = "/delete")

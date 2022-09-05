@@ -39,11 +39,11 @@ public class CustomerDetailsService {
     return customerDetailsForm;
   }
       
-  public void addDetails(Integer user_id, String detail) {
+  public void addDetails(Integer userId, String detail) {
 
     CustomerDetailsBean customerDetailsBean = new CustomerDetailsBean();
 
-    customerDetailsBean.setUserId(user_id);
+    customerDetailsBean.setUserId(userId);
 
     customerDetailsBean.setDetail(detail);
 
@@ -59,11 +59,11 @@ public class CustomerDetailsService {
     customerDetailsRepository.deleteByUserId(userId);
   }
 
-  public String findUserDetails(Integer user_id) {
+  public String findUserDetails(Integer userId) {
 
     String customerDetail = "";
 
-    List<CustomerDetailsBean> customerDetailsBean = customerDetailsRepository.findByUserIdOrderByCreatedAtDesc(user_id);
+    List<CustomerDetailsBean> customerDetailsBean = customerDetailsRepository.findByUserIdOrderByCreatedAtDesc(userId);
 
     for(CustomerDetailsBean userBean : customerDetailsBean) {
         customerDetail = customerDetail + userBean.getCreatedAt().toString() + "\n"; 

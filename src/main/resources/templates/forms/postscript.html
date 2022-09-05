@@ -27,7 +27,7 @@
                 <form method="post" action="/customers/add">
                     <textarea class="form-control" rows="10" name="detail" placeholder="ここに入力"></textarea> 
 
-                    <input type="hidden" name="user_id" th:value="${customer.id}">
+                    <input type="hidden" name="userId" th:value="${customer.id}">
                     <div align="center">
                         <a class="btn btn-outline-secondary" th:href="'/customers/' + ${customer.id}" type="Button">戻る</a>
                         <input class="btn btn-outline-secondary" type="submit" value="登録">
