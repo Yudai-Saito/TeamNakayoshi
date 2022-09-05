@@ -17,8 +17,7 @@
     </head>
     <body>
         <div style="width: auto; margin-top: auto; margin: auto;">
-            <div class="name-and-phone"
-                    style="font-size:20px; padding-top:  50px; padding-bottom: 10px; width: 400px; margin: 0 auto !important;">
+            <div class="name-and-phone" style="font-size:20px; padding-top:  50px; padding-bottom: 10px; width: 400px; margin: 0 auto !important;">
                 <p th:text="'名前: ' + ${customer.name}"></p>
                 <p th:text="'名前: ' + ${customer.phoneNumber}"></p>
             </div>
@@ -26,8 +25,7 @@
                 <textarea id="contents" class="form-control" rows="10" readonly>[[${detail}]]</textarea> 
                 <form method="post" action="/customers/add">
                     <textarea class="form-control" rows="10" name="detail" placeholder="ここに入力"></textarea> 
-
-                    <input type="hidden" name="user_id" th:value="${customer.id}">
+                    <input type="hidden" name="userId" th:value="${customer.id}">
                     <div align="center">
                         <a class="btn btn-outline-secondary" th:href="'/customers/' + ${customer.id}" type="Button">戻る</a>
                         <input class="btn btn-outline-secondary" type="submit" value="登録">
