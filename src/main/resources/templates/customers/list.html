@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <title>顧客一覧画面</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-  </head>
-  <body>
-  
-  <div class="input-group" style="padding-top:  50px; padding-bottom: 50px; width: 50%; margin: 0 auto !important;">
-      <input type="text" class="form-control" placeholder="電話番号を検索" aria-label="Recipient's username with two button addons">
-      <button class="btn btn-outline-secondary" type="button">検索</button>
-      <a class="btn btn-outline-secondary" href="/customers/regist">新規</a>
-  </div>
+    <head>
+        <meta charset="UTF-8" />
+        <title>顧客一覧画面</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="input-group" style="padding-top:  50px; padding-bottom: 50px; width: 50%; margin: 0 auto !important;">
+            <input type="text" class="form-control" placeholder="電話番号を検索" aria-label="Recipient's username with two button addons">
+            <button class="btn btn-outline-secondary" type="button">検索</button>
+            <a class="btn btn-outline-secondary" href="/customers/regist">新規</a>
+        </div>
+        <div class="userscontent">
+            <table class="table table-striped" style="width: 50%; margin: 0 auto !important;">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">名前</th>
+                        <th scope="col">電話番号</th>
+                        <th scope="col">詳細確認</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="customer : ${customers}">
+                        <td th:text="${customer.id}"></td>
+                        <td th:text="${customer.name}"></td>
+                        <td th:text="${customer.phoneNumber}"></td>
+                        <td><a class="btn btn-outline-info" th:href="'/customers/' + ${customer.id}">詳細</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
 
-   <!-- ここに顧客検索UIが来る予定 -->
-   <div class="userscontent">
-    <table class="table table-striped" style="width: 50%; margin: 0 auto !important;">
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">名前</th>
-          <th scope="col">電話番号</th>
-          <th scope="col">詳細確認</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="customer : ${customers}">
-          <td th:text="${customer.id}">1<!-- これらはダミー値 --></td>
-          <td th:text="${customer.name}">Hoge</td>
-          <td th:text="${customer.phoneNumber}">1234</td>
-          <td><a class="btn btn-outline-info" th:href="'/customers/' + ${customer.id}">詳細</a></td>
-        </tr>
-      </tbody>
-      </table>
       <!--1ページあたりの表示件数は10件前後にしたいけど後ろのロジックとすり合わせしないと上手くできなさそう-->
       <!-- とりあえずロジックがあると想定して仮の遷移ロジックだけ書く 
       startPage
@@ -76,6 +77,3 @@
           </li>
         </ul>
       </nav -->
-   </div>
-  </body>
-</html>
