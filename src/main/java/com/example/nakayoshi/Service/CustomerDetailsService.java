@@ -2,21 +2,27 @@ package com.example.nakayoshi.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.example.nakayoshi.Bean.CustomerBean;
 import com.example.nakayoshi.Bean.CustomerDetailsBean;
 import com.example.nakayoshi.Form.CustomerDetailsForm;
 import com.example.nakayoshi.Form.CustomerForm;
 import com.example.nakayoshi.Repository.CustomerDetailsRepository;
+import com.example.nakayoshi.Repository.CustomerRepository;
 
 @Service
 public class CustomerDetailsService {
   @Autowired
   CustomerDetailsRepository customerDetailsRepository;
+
+  @Autowired
+  CustomerRepository customerRepository;
 
   @Autowired
   JdbcTemplate jdbcTemplate;
@@ -28,11 +34,9 @@ public class CustomerDetailsService {
     Date now = new Date();
     customerDetailsForm.setCreatedAt(now);
 
-    String sql = "select * from customers where phone_number = ?";
-
-    Map<String, Object> user = jdbcTemplate.queryForMap(sql, customerForm.getPhoneNumber());
-    customerDetailsForm.setUserId((Integer)user.get("id"));
-
+    Optional<CustomerBean> customer = customerRepository.findByPhoneNumber(customerForm.getPhoneNumber());
+    customerDetailsForm.setUserId(customer.get().getId());
+        
     BeanUtils.copyProperties(customerDetailsForm, customerDetailsBean);
     customerDetailsRepository.save(customerDetailsBean);
 
